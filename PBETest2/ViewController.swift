@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         let plain = "PlainText"
         let plainData = plain.data(using: String.Encoding.ascii)
         let key = "SecretKey"
