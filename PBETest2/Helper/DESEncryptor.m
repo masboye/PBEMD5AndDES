@@ -8,6 +8,8 @@
 
 #import "DESEncryptor.h"
 #import "NSData+Base64.h"
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonCryptor.h>
 
 @implementation DESEncryptor
 #pragma mark -
@@ -21,21 +23,31 @@
 #pragma mark -
 #pragma mark API
 
-+ (NSData*)encryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
+NSString *keyString = @"SecretKey";
+unsigned char salt[] =  {0xA9,0x9B,0xC8,0x32,0x56,0x35,0xE3,0x03};
+
++ (NSData*)encryptData:(NSData*)data ;
 {
     NSData* result = nil;
+    NSData *key = [keyString dataUsingEncoding:NSASCIIStringEncoding];
     
-    // setup key
-    unsigned char cKey[FBENCRYPT_KEY_SIZE];
-    bzero(cKey, sizeof(cKey));
-    [key getBytes:cKey length:FBENCRYPT_KEY_SIZE];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    memset(md5Buffer, 0, CC_MD5_DIGEST_LENGTH);
+    CC_MD5_CTX md5Ctx;
+    CC_MD5_Init(&md5Ctx);
+    CC_MD5_Update(&md5Ctx, [key bytes], [key length]);
     
-    // setup iv
-    char cIv[FBENCRYPT_BLOCK_SIZE];
-    bzero(cIv, FBENCRYPT_BLOCK_SIZE);
-    if (iv) {
-        [iv getBytes:cIv length:FBENCRYPT_BLOCK_SIZE];
+    CC_MD5_Update(&md5Ctx, salt, 8);
+    CC_MD5_Final(md5Buffer, &md5Ctx);
+    
+    for (int i=1; i<19; i++) {
+        CC_MD5(md5Buffer, CC_MD5_DIGEST_LENGTH, md5Buffer);
     }
+    
+    // DES-CBC requires an explicit Initialization Vector (IV)
+    // IV - second half of md5 key
+    unsigned char IV[kCCBlockSizeDES];
+    memcpy(IV, md5Buffer + CC_MD5_DIGEST_LENGTH / 2, sizeof(IV));
     
     // setup output buffer
     size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
@@ -46,9 +58,9 @@
     CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
                                           FBENCRYPT_ALGORITHM,
                                           kCCOptionPKCS7Padding,
-                                          cKey,
-                                          FBENCRYPT_KEY_SIZE,
-                                          cIv,
+                                          md5Buffer,
+                                          CC_MD5_DIGEST_LENGTH/2,
+                                          IV,
                                           [data bytes],
                                           [data length],
                                           buffer,
@@ -64,22 +76,28 @@
     return result;
 }
 
-+ (NSData*)decryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
++ (NSData*)decryptData:(NSData*)data ;
 {
     NSData* result = nil;
+    NSData *key = [keyString dataUsingEncoding:NSASCIIStringEncoding];
     
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    memset(md5Buffer, 0, CC_MD5_DIGEST_LENGTH);
+    CC_MD5_CTX md5Ctx;
+    CC_MD5_Init(&md5Ctx);
+    CC_MD5_Update(&md5Ctx, [key bytes], [key length]);
     
-    // setup key
-    unsigned char cKey[FBENCRYPT_KEY_SIZE];
-    bzero(cKey, sizeof(cKey));
-    [key getBytes:cKey length:FBENCRYPT_KEY_SIZE];
+    CC_MD5_Update(&md5Ctx, salt, 8);
+    CC_MD5_Final(md5Buffer, &md5Ctx);
     
-    // setup iv
-    char cIv[FBENCRYPT_BLOCK_SIZE];
-    bzero(cIv, FBENCRYPT_BLOCK_SIZE);
-    if (iv) {
-        [iv getBytes:cIv length:FBENCRYPT_BLOCK_SIZE];
+    for (int i=1; i<19; i++) {
+        CC_MD5(md5Buffer, CC_MD5_DIGEST_LENGTH, md5Buffer);
     }
+    
+    // DES-CBC requires an explicit Initialization Vector (IV)
+    // IV - second half of md5 key
+    unsigned char IV[kCCBlockSizeDES];
+    memcpy(IV, md5Buffer + CC_MD5_DIGEST_LENGTH / 2, sizeof(IV));
     
     // setup output buffer
     size_t bufferSize = [data length] + FBENCRYPT_BLOCK_SIZE;
@@ -90,9 +108,9 @@
     CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
                                           FBENCRYPT_ALGORITHM,
                                           kCCOptionPKCS7Padding,
-                                          cKey,
-                                          FBENCRYPT_KEY_SIZE,
-                                          cIv,
+                                          md5Buffer,
+                                          CC_MD5_DIGEST_LENGTH/2,
+                                          IV,
                                           [data bytes],
                                           [data length],
                                           buffer,
@@ -112,18 +130,14 @@
 
 + (NSString*)encryptBase64String:(NSString*)string keyString:(NSString*)keyString separateLines:(BOOL)separateLines
 {
-    NSData* data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]
-                                 key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
-                                  iv:nil];
+    NSData* data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]];
     return [data base64EncodedStringWithSeparateLines:separateLines];
 }
 
 + (NSString*)decryptBase64String:(NSString*)encryptedBase64String keyString:(NSString*)keyString
 {
     NSData* encryptedData = [NSData dataFromBase64String:encryptedBase64String];
-    NSData* data = [self decryptData:encryptedData
-                                 key:[keyString dataUsingEncoding:NSUTF8StringEncoding]
-                                  iv:nil];
+    NSData* data = [self decryptData:encryptedData ];
     if (data) {
         return [[NSString alloc] initWithData:data
                                       encoding:NSUTF8StringEncoding] ;

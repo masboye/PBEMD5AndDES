@@ -21,8 +21,8 @@
 // API (raw data)
 //-----------------
 + (NSData*)generateIv;
-+ (NSData*)encryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
-+ (NSData*)decryptData:(NSData*)data key:(NSData*)key iv:(NSData*)iv;
++ (NSData*)encryptData:(NSData*)data;
++ (NSData*)decryptData:(NSData*)data;
 
 
 //-----------------
