@@ -14,6 +14,7 @@
 #define FBENCRYPT_KEY_SIZE      kCCKeySizeDES
 
 @interface DESEncryptor : NSObject {
+   // @property (class, nonatomic, assign) NSString keyString;
     
 }
 
@@ -23,8 +24,7 @@
 + (NSData*)generateIv;
 + (NSData*)encryptData:(NSData*)data;
 + (NSData*)decryptData:(NSData*)data;
-
-
+@property (class) NSString *keyString;
 //-----------------
 // API (base64)
 //-----------------

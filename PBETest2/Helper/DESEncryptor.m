@@ -23,13 +23,17 @@
 #pragma mark -
 #pragma mark API
 
-NSString *keyString = @"SecretKey";
+//static NSString *keyString = @"SecretKey";
+static NSString * _keyString = @"DefaultKey";
++ (NSString *)keyString { return _keyString; }
++ (void)setKeyString:(NSString *)newString { _keyString = newString; }
+
 unsigned char salt[] =  {0xA9,0x9B,0xC8,0x32,0x56,0x35,0xE3,0x03};
 
 + (NSData*)encryptData:(NSData*)data ;
 {
     NSData* result = nil;
-    NSData *key = [keyString dataUsingEncoding:NSASCIIStringEncoding];
+    NSData *key = [_keyString dataUsingEncoding:NSASCIIStringEncoding];
     
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
     memset(md5Buffer, 0, CC_MD5_DIGEST_LENGTH);
@@ -79,7 +83,7 @@ unsigned char salt[] =  {0xA9,0x9B,0xC8,0x32,0x56,0x35,0xE3,0x03};
 + (NSData*)decryptData:(NSData*)data ;
 {
     NSData* result = nil;
-    NSData *key = [keyString dataUsingEncoding:NSASCIIStringEncoding];
+    NSData *key = [_keyString dataUsingEncoding:NSASCIIStringEncoding];
     
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
     memset(md5Buffer, 0, CC_MD5_DIGEST_LENGTH);

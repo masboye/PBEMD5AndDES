@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         let plain = "PlainText"
         let plainData = plain.data(using: String.Encoding.ascii)
         
+        DESEncryptor.keyString = "SecretKey"
         let encryptedData = DESEncryptor.encryptData(plainData)
         print(encryptedData!.base64EncodedString())
         //print("\(encryptedData)")
@@ -28,6 +29,8 @@ class ViewController: UIViewController {
         //print("\(decryptedData)")
         let strOrigional = String(decoding: decryptedData!, as: UTF8.self)
         print("\(strOrigional)")
+        
+        
     }
 
 
