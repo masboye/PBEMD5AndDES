@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF62E661233C53010035FC6D /* PBETest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PBETest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF62E661233C53010035FC6D /* PBEMD5AndDES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PBEMD5AndDES.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF62E664233C53010035FC6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF62E666233C53010035FC6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF62E669233C53010035FC6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		EF62E662233C53010035FC6D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EF62E661233C53010035FC6D /* PBETest2.app */,
+				EF62E661233C53010035FC6D /* PBEMD5AndDES.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EF62E660233C53010035FC6D /* PBETest2 */ = {
+		EF62E660233C53010035FC6D /* PBEMD5AndDES */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF62E673233C53020035FC6D /* Build configuration list for PBXNativeTarget "PBETest2" */;
+			buildConfigurationList = EF62E673233C53020035FC6D /* Build configuration list for PBXNativeTarget "PBEMD5AndDES" */;
 			buildPhases = (
 				EF62E65D233C53010035FC6D /* Sources */,
 				EF62E65E233C53010035FC6D /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = PBETest2;
+			name = PBEMD5AndDES;
 			productName = PBETest2;
-			productReference = EF62E661233C53010035FC6D /* PBETest2.app */;
+			productReference = EF62E661233C53010035FC6D /* PBEMD5AndDES.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -120,7 +120,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF62E65C233C53010035FC6D /* Build configuration list for PBXProject "PBETest2" */;
+			buildConfigurationList = EF62E65C233C53010035FC6D /* Build configuration list for PBXProject "PBEMD5AndDES" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -133,7 +133,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF62E660233C53010035FC6D /* PBETest2 */,
+				EF62E660233C53010035FC6D /* PBEMD5AndDES */,
 			);
 		};
 /* End PBXProject section */
@@ -343,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF62E65C233C53010035FC6D /* Build configuration list for PBXProject "PBETest2" */ = {
+		EF62E65C233C53010035FC6D /* Build configuration list for PBXProject "PBEMD5AndDES" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF62E671233C53020035FC6D /* Debug */,
@@ -352,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF62E673233C53020035FC6D /* Build configuration list for PBXNativeTarget "PBETest2" */ = {
+		EF62E673233C53020035FC6D /* Build configuration list for PBXNativeTarget "PBEMD5AndDES" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF62E674233C53020035FC6D /* Debug */,
