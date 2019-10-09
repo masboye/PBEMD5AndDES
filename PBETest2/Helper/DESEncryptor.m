@@ -132,13 +132,13 @@ unsigned char salt[] =  {0xA9,0x9B,0xC8,0x32,0x56,0x35,0xE3,0x03};
 }
 
 
-+ (NSString*)encryptBase64String:(NSString*)string keyString:(NSString*)keyString separateLines:(BOOL)separateLines
++ (NSString*)encryptBase64String:(NSString*)string separateLines:(BOOL)separateLines
 {
     NSData* data = [self encryptData:[string dataUsingEncoding:NSUTF8StringEncoding]];
     return [data base64EncodedStringWithSeparateLines:separateLines];
 }
 
-+ (NSString*)decryptBase64String:(NSString*)encryptedBase64String keyString:(NSString*)keyString
++ (NSString*)decryptBase64String:(NSString*)encryptedBase64String
 {
     NSData* encryptedData = [NSData dataFromBase64String:encryptedBase64String];
     NSData* data = [self decryptData:encryptedData ];
