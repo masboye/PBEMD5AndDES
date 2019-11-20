@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +11,65 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PBEMD5AndDES" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Pei-3P-oFD">
+                                <rect key="frame" x="10" y="340.5" width="394" height="225"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2L-ZP-Qox">
+                                        <rect key="frame" x="174" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="process:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qMI-hl-CCL"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qmS-3t-xho">
+                                        <rect key="frame" x="0.0" y="61" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kiO-Tg-m2l">
+                                        <rect key="frame" x="0.0" y="126" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sDO-6f-qfg">
+                                        <rect key="frame" x="0.0" y="191" width="394" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="sDO-6f-qfg" firstAttribute="leading" secondItem="Pei-3P-oFD" secondAttribute="leading" id="EO7-hn-t5K"/>
+                                    <constraint firstAttribute="trailing" secondItem="sDO-6f-qfg" secondAttribute="trailing" id="G7V-LY-cqk"/>
+                                    <constraint firstItem="qmS-3t-xho" firstAttribute="leading" secondItem="Pei-3P-oFD" secondAttribute="leading" id="SS8-Xk-qES"/>
+                                    <constraint firstAttribute="trailing" secondItem="qmS-3t-xho" secondAttribute="trailing" id="iDN-HQ-tYP"/>
+                                    <constraint firstItem="kiO-Tg-m2l" firstAttribute="leading" secondItem="Pei-3P-oFD" secondAttribute="leading" id="puP-p1-bBN"/>
+                                    <constraint firstAttribute="trailing" secondItem="kiO-Tg-m2l" secondAttribute="trailing" id="x8z-yO-d00"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pei-3P-oFD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="59C-R6-N7H"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pei-3P-oFD" secondAttribute="trailing" constant="10" id="XhA-d9-zTy"/>
+                            <constraint firstItem="Pei-3P-oFD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="laV-3w-ZFY"/>
+                            <constraint firstItem="Pei-3P-oFD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="y9t-Mk-Rc3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="key" destination="qmS-3t-xho" id="DfI-4X-OKl"/>
+                        <outlet property="reply" destination="kiO-Tg-m2l" id="zxv-zT-HKg"/>
+                        <outlet property="result" destination="sDO-6f-qfg" id="n0Z-ga-LAE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="93"/>
         </scene>
     </scenes>
 </document>

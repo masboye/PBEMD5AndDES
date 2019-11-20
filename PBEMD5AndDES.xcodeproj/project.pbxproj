@@ -61,7 +61,7 @@
 		EF62E663233C53010035FC6D /* PBETest2 */ = {
 			isa = PBXGroup;
 			children = (
-				EF62E676233C530A0035FC6D /* Helper */,
+				EF62E676233C530A0035FC6D /* Encryption */,
 				EF62E664233C53010035FC6D /* AppDelegate.swift */,
 				EF62E666233C53010035FC6D /* ViewController.swift */,
 				EF62E668233C53010035FC6D /* Main.storyboard */,
@@ -72,7 +72,7 @@
 			path = PBETest2;
 			sourceTree = "<group>";
 		};
-		EF62E676233C530A0035FC6D /* Helper */ = {
+		EF62E676233C530A0035FC6D /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
 				EF62E678233C5C410035FC6D /* DESEncryptor.m */,
@@ -81,7 +81,7 @@
 				EF62E67B233C5D330035FC6D /* NSData+Base64.m */,
 				EF62E67D233C5D3D0035FC6D /* NSData+Base64.h */,
 			);
-			path = Helper;
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +314,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = id.go.kemlu.PBETest2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PBETest2/Helper/PBETest2-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PBETest2/Encryption/SimkeuRestClient-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -334,7 +334,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = id.go.kemlu.PBETest2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PBETest2/Helper/PBETest2-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PBETest2/Encryption/SimkeuRestClient-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
